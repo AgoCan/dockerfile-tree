@@ -58,3 +58,31 @@ func GetLevelList() (list []*Levels, err error) {
 	list = buildTree(0, data)
 	return list, nil
 }
+
+// CreateLevel 创建level
+func CreateLevel(parentID int, orderID int, name string) (id int64, err error) {
+	sqlStr := `
+		INSERT INTO level(name, order_id, parent_id)
+		VALUES (?,?,?)
+	`
+	res, err := models.DB.Exec(sqlStr, name, parentID, orderID)
+	if err != nil {
+		return 0, err
+	}
+	id, err = res.LastInsertId()
+	return id, err
+}
+
+// DeleteLevel 删除level
+func DeleteLevel(id int) (err error) {
+	sqlStr := `DELETE FROM level where id = ?`
+	res, err := models.DB.Exec(sqlStr, id)
+	if err != nil {
+		return err
+	}
+	_, err = res.RowsAffected()
+	if err != nil {
+		return err
+	}
+	return nil
+}

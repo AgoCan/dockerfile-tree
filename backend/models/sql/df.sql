@@ -34,7 +34,7 @@ CREATE TABLE `level` (
   `deleted_at` datetime DEFAULT NULL,
   `name` varchar(64) NOT NULL COMMENT '当前层级的名称',
   `comment` varchar(256) COMMENT '当前层级的注释',
-  `order_id` int COMMENT '顺序',
+  `order_id` int NOT NULL COMMENT '顺序',
   `parent_id` int NOT NULL COMMENT '没有父节点的为顶层，没有对应的dockerfile',
   PRIMARY KEY (`id`),
   KEY `idx_level_deleted_at` (`deleted_at`)

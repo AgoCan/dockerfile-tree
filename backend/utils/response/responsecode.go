@@ -4,7 +4,7 @@ package response
 const (
 	ErrCodeSuccess   = 0
 	ErrCodeParameter = 1001
-	ErrSQLList       = 2001
+	ErrSQL           = 2001
 )
 
 func getMessage(code int) (message string) {
@@ -13,7 +13,7 @@ func getMessage(code int) (message string) {
 
 	codeMsgMap[ErrCodeSuccess] = "success"
 	codeMsgMap[ErrCodeParameter] = "参数错误"
-	codeMsgMap[ErrSQLList] = "查询错误"
+	codeMsgMap[ErrSQL] = "sql错误"
 
 	message, ok := codeMsgMap[code]
 	if !ok {

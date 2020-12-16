@@ -18,8 +18,9 @@ func SetupRouter() *gin.Engine {
 	// router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	dockerGroup := router.Group("/api/v1")
 	{
-		dockerGroup.GET("/level", controllers.GetLevelList) // 获取level列表
-		// dockerGroup.POST("/level", controllers.CreateLevel) // 创建level
+		dockerGroup.GET("/level", controllers.GetLevelList)   // 获取level列表
+		dockerGroup.POST("/level", controllers.CreateLevel)   // 创建level
+		dockerGroup.DELETE("/level", controllers.DeleteLevel) // 创建level
 		// dockerGroup.GET("/level/:id")                       // 获取单个level
 
 		// dockerGroup.GET("/dockerfile/:id") // 获取单个dockerfile
