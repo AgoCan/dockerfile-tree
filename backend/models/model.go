@@ -18,8 +18,8 @@ var DB *sqlx.DB
 // baseModel 继承使用，减少反复写此段代码
 type baseModel struct {
 	ID        int        `db:"id"      json:"id"`
-	CreatedAt time.Time  `db:"created_at" json:"created_at"`
-	UpdatedAt time.Time  `db:"updated_at" json:"updated_at"`
+	CreatedAt time.Time  `db:"created_at" json:"created_at,omitempty"`
+	UpdatedAt time.Time  `db:"updated_at" json:"updated_at,omitempty"`
 	DeletedAt *time.Time `db:"deleted_at" json:"deleted_at,omitempty"`
 }
 

@@ -6,9 +6,9 @@ package config
 // https://github.com/go-yaml/yaml
 
 import (
+	"fmt"
 	"path"
 	"runtime"
-	"fmt"
 
 	"github.com/spf13/viper"
 )
@@ -62,10 +62,10 @@ var (
 	LogDirector string
 	// LogInfoFile info日志文件
 	LogInfoFilename string
-	LogMaxSize int
-	LogMaxBackups int
-	LogMaxAge int
-	LogLevel string
+	LogMaxSize      int
+	LogMaxBackups   int
+	LogMaxAge       int
+	LogLevel        string
 )
 
 // 获取文件绝对路径
@@ -103,4 +103,3 @@ func InitConfig(opt *Option) (err error) {
 
 	return nil
 }
-

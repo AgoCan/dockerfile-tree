@@ -62,6 +62,7 @@ type Resource struct {
 // Config 配置表
 type Config struct {
 	baseModel
-	Key   string `db:"key" json:"key"`
-	Value string `db:"value" json:"value"`
+	Key     string  `db:"config_key" json:"config_key"`
+	Value   *string `db:"config_value" json:"config_value"`
+	Comment *string `db:"config_comment" json:"config_comment"`
 }

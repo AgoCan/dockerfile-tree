@@ -19,3 +19,11 @@ type DockerfileInfo struct {
 	Dockerfile string `json:"dockerfile"`
 	LevelID    int    `json:"level_id"`
 }
+
+// Configs 配置项
+type Configs struct {
+	ID      int     `json:"id"`
+	Key     string  `json:"config_key"`
+	Value   *string `json:"config_value"`
+	Comment *string `json:"config_comment"`
+}

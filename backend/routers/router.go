@@ -23,10 +23,11 @@ func SetupRouter() *gin.Engine {
 		v1Group.DELETE("/level", controllers.DeleteLevel)                   // 创建level
 		v1Group.GET("/dockerfile", controllers.GetDockerfileByID)           // 获取单个dockerfile
 		v1Group.POST("/dockerfile", controllers.CreateUpdateDockerfileByID) // 创建或更新dockerfile
-		v1Group.GET("/resource")                                            // 获取资源
-		v1Group.POST("/resource")                                           // 创建资源
-		v1Group.GET("/config")                                              // 获取配置
-		v1Group.POST("/config")                                             // 创建配置
+		// v1Group.GET("/resource")                                            // 获取资源
+		// v1Group.POST("/resource")                                           // 创建资源
+		v1Group.GET("/config", controllers.GetConfig) // 获取配置
+		// v1Group.POST("/config", controllers.CreateConfig)                   // 创建配置
+		v1Group.POST("/config", controllers.UpdateConfig) // 创建配置
 	}
 
 	return router

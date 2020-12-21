@@ -107,6 +107,7 @@ CREATE TABLE `resource` (
   UNIQUE KEY `image_name` (`image_name`),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+INSERT INTO `dockerfile_tree`.`resource`(`id`, `image_name`, `dockerfile_url_path`) VALUES (1, 'hank997/dockerfile-tree:base-scripts', "https://github.com/AgoCan/dockerfile-tree/tree/main/examples/dockerfiles/base-scripts");
 
 -- 配置表，配置文件
 drop TABLE IF EXISTS `config`;
@@ -115,8 +116,18 @@ CREATE TABLE `config` (
   `created_at` datetime  NOT NULL DEFAULT CURRENT_TIMESTAMP  COMMENT '发布时间',
   `updated_at` datetime  NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP  COMMENT '更新时间',
   `deleted_at` datetime DEFAULT NULL,
-  `key` varchar(64) NOT NULL COMMENT '配置文件的key',
-  `value` varchar(64) NOT NULL COMMENT '配置文件的value',
-  UNIQUE KEY `key` (`key`),
+  `config_key` varchar(64) NOT NULL COMMENT '配置文件的key',
+  `config_value` varchar(1024) COMMENT '配置文件的value',
+  `config_comment` VARCHAR(1024) COMMENT '简短说明配置项',
+  UNIQUE KEY `config_key` (`config_key`),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `dockerfile_tree`.`config`(`id`, `config_key`, `config_value`, `config_comment`) 
+VALUES (1, 'http_proxy', "http://127.0.0.1", "代理");
+INSERT INTO `dockerfile_tree`.`config`(`id`, `config_key`, `config_value`, `config_comment`) 
+VALUES (2, 'https_proxy', "http://127.0.0.1", "代理");
+INSERT INTO `dockerfile_tree`.`config`(`id`, `config_key`, `config_value`, `config_comment`) 
+VALUES (3, 'no_proxy', 
+"localhost,127.0.0.1,localaddress,.localdomain.com,.aliyuncs.com,.cloud.tencent.com,.tuna.tsinghua.edu.cn", 
+"不使用代理的域名");
