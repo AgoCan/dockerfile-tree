@@ -2,6 +2,6 @@
 
 FROM busybox 
 WORKDIR /
-RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py 
+RUN wget https://bootstrap.pypa.io/get-pip.py
 COPY clean-layer.sh remove-cuda-static.sh /
     
