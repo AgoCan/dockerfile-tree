@@ -86,3 +86,11 @@ func DeleteLevel(id int) (err error) {
 	}
 	return nil
 }
+
+// UpdateLevel 更新
+func UpdateLevel(id, parentID, orderID int, name string) (err error) {
+	// 如何更新数据，比如第二级的数据插入第一级中，如何把所有的数据都更新了？
+	// 方案1，根据修改时间，修改时间比较新的排前面，那get 请求也需要重新整理
+	// 方案2，直接把ID靠后的全部取出来，全部修改，性能差
+	return nil
+}

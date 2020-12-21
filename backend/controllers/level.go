@@ -53,3 +53,23 @@ func DeleteLevel(c *gin.Context) {
 	}
 	response.Success(c, "ok")
 }
+
+// UpdateLevel 更新
+func UpdateLevel(c *gin.Context) {
+	var levelInfo LevelInfo
+
+	err := c.BindJSON(&levelInfo)
+
+	if err != nil {
+		response.Error(c, response.ErrCodeParameter)
+
+		panic(err)
+	}
+	err = db.UpdateLevel(levelInfo.ID, levelInfo.ParentID, levelInfo.OrderID, levelInfo.Name)
+	if err != nil {
+		response.Error(c, response.ErrSQL)
+
+		panic(err)
+	}
+	response.Success(c, "ok")
+}

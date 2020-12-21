@@ -24,7 +24,7 @@ type Level struct {
 	baseModel
 	Name     string  `db:"name" json:"name"`
 	Comment  *string `db:"comment" json:"comment"`
-	OrderID    int     `db:"order_id" json:"order_id"`
+	OrderID  int     `db:"order_id" json:"order_id"`
 	ParentID int     `db:"parent_id" json:"parent_id"`
 }
 

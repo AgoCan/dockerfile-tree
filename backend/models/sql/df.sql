@@ -53,6 +53,8 @@ INSERT INTO `dockerfile_tree`.`level`(`id`, `name`, `order_id`, `parent_id`) VAL
 INSERT INTO `dockerfile_tree`.`level`(`id`, `name`, `order_id`, `parent_id`) VALUES (11, 'lab', 8, 0);
 INSERT INTO `dockerfile_tree`.`level`(`id`, `name`, `order_id`, `parent_id`) VALUES (12, 'coding-env', 9, 0);
 
+INSERT INTO `dockerfile_tree`.`level`(`id`, `name`, `order_id`, `parent_id`) VALUES (13, '10.0-cudnn7.6.5', 1, 1);
+
 -- 层级和组合任务表的联合表，并且记录构建的dockerfile内容，该内容是不允许手动页面修改，只能程序修改
 drop TABLE IF EXISTS `level_combination_task`;
 CREATE TABLE `level_combination_task` (
