@@ -103,7 +103,7 @@ CREATE TABLE `resource` (
   `updated_at` datetime  NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP  COMMENT '更新时间',
   `deleted_at` datetime DEFAULT NULL,
   `image_name` varchar(64) NOT NULL,
-  `dockerfile_url_path` varchar(64) DEFAULT NULL COMMENT '记录资源镜像的dockerfile制作位置',
+  `dockerfile_url_path` varchar(256) DEFAULT NULL COMMENT '记录资源镜像的dockerfile制作位置',
   UNIQUE KEY `image_name` (`image_name`),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

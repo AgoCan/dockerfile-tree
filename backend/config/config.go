@@ -35,13 +35,15 @@ type DbConfig struct {
 
 // LogConfig 日志配置文件
 type LogConfig struct {
-	LogDirector     string
-	LogInfoFilename string
-	LogInfoFilePath string
-	LogMaxSize      int
-	LogMaxBackups   int
-	LogMaxAge       int
-	LogLevel        string
+	LogDirector      string
+	LogInfoFilename  string
+	LogInfoFilePath  string
+	LogErrorFilename string
+	LogErrorFilePath string
+	LogMaxSize       int
+	LogMaxBackups    int
+	LogMaxAge        int
+	LogLevel         string
 }
 
 // 设置配置文件的 环境变量
@@ -100,6 +102,7 @@ func InitConfig(opt *Option) (err error) {
 		LogDirector = path.Join(path.Dir(getCurrPath()), "log")
 	}
 	Conf.Log.LogInfoFilePath = path.Join(LogDirector, viper.GetString("log.logInfoFilename"))
+	Conf.Log.LogErrorFilePath = path.Join(LogDirector, viper.GetString("log.logErrorFilename"))
 
 	return nil
 }
