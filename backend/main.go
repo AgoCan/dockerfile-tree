@@ -2,15 +2,14 @@ package main
 
 import (
 	"fmt"
-	"os"
 	"log"
-	
+	"os"
+
 	"github.com/urfave/cli/v2"
 
 	"backend/config"
 	"backend/models"
 	"backend/routers"
-
 )
 
 var (
@@ -36,7 +35,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	
+
 	// 初始化配置文件
 	config.InitConfig(&config.Opt)
 	// 连接数据库并在代码结束后关闭

@@ -54,6 +54,7 @@ INSERT INTO `dockerfile_tree`.`level`(`id`, `name`, `order_id`, `parent_id`) VAL
 INSERT INTO `dockerfile_tree`.`level`(`id`, `name`, `order_id`, `parent_id`) VALUES (12, 'coding-env', 9, 0);
 
 INSERT INTO `dockerfile_tree`.`level`(`id`, `name`, `order_id`, `parent_id`) VALUES (13, '10.0-cudnn7.6.5', 1, 1);
+INSERT INTO `dockerfile_tree`.`level`(`id`, `name`, `order_id`, `parent_id`) VALUES (14, '3.6', 2, 2);
 
 -- 层级和组合任务表的联合表，并且记录构建的dockerfile内容，该内容是不允许手动页面修改，只能程序修改
 drop TABLE IF EXISTS `level_combination_task`;
@@ -90,6 +91,7 @@ CREATE TABLE `record` (
   `image_info` varchar(512) NOT NULL COMMENT '构建信息展示',
   `image_name` varchar(512) NOT NULL COMMENT '镜像名',
   `push_status` int NOT NULL DEFAULT 1 COMMENT '是否push镜像成功，0 失败， 1成功',
+  `is_last_level` int(8) NOT NULL COMMENT '0代表中间层，1代表最后一层，1表示是用户想要的镜像',
   `combination_task_id` int NOT NULL COMMENT '一对一task表',
   UNIQUE KEY `image_name` (`image_name`),
   PRIMARY KEY (`id`)
@@ -131,3 +133,7 @@ INSERT INTO `dockerfile_tree`.`config`(`id`, `config_key`, `config_value`, `conf
 VALUES (3, 'no_proxy', 
 "localhost,127.0.0.1,localaddress,.localdomain.com,.aliyuncs.com,.cloud.tencent.com,.tuna.tsinghua.edu.cn", 
 "不使用代理的域名");
+INSERT INTO `dockerfile_tree`.`config`(`id`, `config_key`, `config_value`, `config_comment`) 
+VALUES (4, 'registry_username', "admin", "仓库用户名");
+INSERT INTO `dockerfile_tree`.`config`(`id`, `config_key`, `config_value`, `config_comment`) 
+VALUES (5, 'registry_password', "Harbor12345", "仓库密码");

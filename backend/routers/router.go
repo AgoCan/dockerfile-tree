@@ -22,14 +22,19 @@ func SetupRouter() *gin.Engine {
 		v1Group.POST("/level", api.CreateLevel)                 // 创建level
 		v1Group.PUT("/level/:id", api.UpdateLevel)              // 创建level
 		v1Group.DELETE("/level/:id", api.DeleteLevel)           // 删除level
+
 		v1Group.GET("/dockerfile", api.GetDockerfileByLevelID)  // 获取单个dockerfile
 		v1Group.POST("/dockerfile", api.CreateUpdateDockerfile) // 创建或更新dockerfile
+
 		v1Group.GET("/resource", api.ListResource)              // 获取资源
 		// v1Group.PUT("/resource/:id", api.UpdateResource)        // 更新资源
 		v1Group.POST("/resource", api.CreateResource) // 创建资源
 		// v1Group.DELETE("/resource/:id", api.DeleteResource) // 删除资源
+
 		v1Group.GET("/config", api.ListConfig)    // 获取配置
-		v1Group.POST("/config", api.UpdateConfig) // 创建配置，该记录可能不存在，后期优化
+		v1Group.POST("/config", api.CreateConfig) // 创建配置，该记录可能不存在，后期优化
+
+		v1Group.POST("/build", api.CreateBuildJob)
 	}
 	return router
 }

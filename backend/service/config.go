@@ -3,6 +3,9 @@ package service
 import (
 	"backend/models"
 	"backend/serializer"
+	"fmt"
+
+	"github.com/jmoiron/sqlx"
 )
 
 // ListConfigService 配置列表
@@ -20,7 +23,25 @@ func (service *ListConfigService) List() serializer.Response {
 	}
 
 	res := serializer.BuildConfigs(configList)
-
+	sqlStr = `select 
+	l.updated_at,name,comment,order_id,parent_id,dockerfile
+		from 
+			level l,dockerfile d
+		where 
+		l.id in (?) and l.id=d.level_id; `
+	query, args, err := sqlx.In(sqlStr, []int{1, 2, 3, 8})
+	if err != nil {
+		println(err)
+	}
+	rows, err := models.DB.Queryx(query, args...)
+	fmt.Println(err)
+	var levelList []*models.LevelDockerfile
+	for rows.Next() {
+		var level models.LevelDockerfile
+		fmt.Println(1, rows.StructScan(&level))
+		levelList = append(levelList, &level)
+	}
+	fmt.Println(levelList[0].Name, levelList[0].UpdatedAt)
 	return serializer.Success(res)
 }
 

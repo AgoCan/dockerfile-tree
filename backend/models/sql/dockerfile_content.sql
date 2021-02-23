@@ -69,3 +69,24 @@ RUN
     rm -f /etc/apt/sources.list.d/cuda.list /etc/apt/sources.list.d/nvidia-ml.list
 
 ENV IMAGE_TAG_INFO ""', 13);
+
+INSERT INTO `dockerfile_tree`.`dockerfile`(`id`, `dockerfile`, `level_id`) VALUES (2, '## Python 3.6
+FROM cuda-image
+COPY get-pip.py /usr/local/src/get-pip.py
+RUN \
+    sed -i \'s/mirrors.aliyun.com/mirrors.cloud.tencent.com/g\' /etc/apt/sources.list && \
+    sed -i \'s/mirrors.aliyun.com/mirrors.cloud.tencent.com/g\' /etc/apt/sources.list
+RUN \
+    apt-get update && \
+    apt-get install -y software-properties-common && \
+    add-apt-repository -y  ppa:deadsnakes/ppa && \
+    apt-get update && \
+    apt-get install -y python3.6 python3.6-dev && \
+    # 设置默认python版本链接
+    update-alternatives --install /usr/bin/python python /usr/bin/python3.6 2 && \
+    update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 2 && \
+    update-alternatives --set python /usr/bin/python3.6 && \
+    update-alternatives --set python3 /usr/bin/python3.6 && \
+    # pip, wheel, setuptools
+    python3.6 /usr/local/src/get-pip.py && \
+    clean-layer.sh',14);

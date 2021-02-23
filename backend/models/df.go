@@ -1,5 +1,7 @@
 package models
 
+import "time"
+
 // 构建 状态
 const (
 	BuildFailed = iota
@@ -15,8 +17,20 @@ const (
 // Dockerfile dockerfile
 type Dockerfile struct {
 	baseModel
+
 	Dockerfile string `db:"dockerfile" json:"dockerfile"`
 	LevelID    int    `db:"level_id" json:"level_id"`
+}
+
+// LevelDockerfile 查询1对1的数据存储结构体
+type LevelDockerfile struct {
+	ID         int       `db:"level.id"`
+	UpdatedAt  time.Time `db:"level.updated_at" json:"updated_at"`
+	Name       string    `db:"level.name" json:"name"`
+	Comment    *string   `db:"level.comment" json:"comment"`
+	OrderID    int       `db:"level.order_id" json:"order_id"`
+	ParentID   int       `db:"level.parent_id" json:"parent_id"`
+	Dockerfile string    `db:"dockerfile.dockerfile" json:"dockerfile"`
 }
 
 // Level 层级表
@@ -50,6 +64,7 @@ type Record struct {
 	ImageName         string `db:"image_name" json:"image_name"`
 	PushStatus        int    `db:"push_status" json:"push_status"`
 	CombinationTaskID int    `db:"combination_task_id" json:"combination_task_id"`
+	IsLastLevel       int    `db:"is_last_level" json:"is_last_level"`
 }
 
 // Resource 资源表述表

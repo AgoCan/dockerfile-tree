@@ -15,8 +15,8 @@ func ListConfig(c *gin.Context) {
 	c.JSON(http.StatusOK, res)
 }
 
-// UpdateConfig 更新配置
-func UpdateConfig(c *gin.Context) {
+// CreateConfig 更新配置
+func CreateConfig(c *gin.Context) {
 	service := service.CreateConfig{}
 	if err := c.ShouldBind(&service); err != nil {
 		c.JSON(200, serializer.Error(serializer.ErrCodeParameter))
